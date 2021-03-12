@@ -22,5 +22,20 @@ namespace Paint
             _canvas = new Canvas();
             Controls.Add(_canvas.View);
         }
+
+        public void CanvasView_MouseDown(object sender, MouseEventArgs e)
+        {
+            Console.WriteLine("Mouse Down");
+        }
+
+        public void CanvasView_MouseUp(object sender, MouseEventArgs e)
+        {
+            Console.WriteLine("Mouse Up");
+        }
+
+        public void CanvasView_MouseMove(object sender, MouseEventArgs e)
+        {
+            Console.WriteLine("Mouse Move");
+        }
     }
 }
