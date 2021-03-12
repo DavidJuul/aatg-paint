@@ -53,7 +53,7 @@ namespace Paint
                 }
 
                 Canvas canvas = (sender as CanvasView).Canvas;
-                canvas.Graphics.DrawLine(_pen, _previousPoint, currentPoint);
+                canvas.DrawLine(_pen, _previousPoint, currentPoint);
 
                 _previousPoint = currentPoint;
             }
