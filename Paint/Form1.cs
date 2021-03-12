@@ -36,9 +36,21 @@ namespace Paint
             ToolStripMenuItem fileMenu = new ToolStripMenuItem();
 
             fileMenu.Text = "Filer";
+            AddMenuStripItem("Ny", fileMenu);
 
             mainMenu.Items.Add(fileMenu);
+            
 
+        }
+
+        void AddMenuStripItem(string text, ToolStripMenuItem menu)
+        {
+            ToolStripMenuItem item = new ToolStripMenuItem();
+            item.Text = text;
+            // TODO eventhandler logik
+            // TODO flere egenskaber
+
+            menu.DropDownItems.Insert(menu.DropDownItems.Count, item);
         }
     }
 }
