@@ -16,7 +16,6 @@ namespace Paint
         {
             InitializeComponent();
 
-
             // ---------------- Main menu that holds multiple menu items -------
             MenuStrip mainMenu = new MenuStrip();
 
@@ -32,23 +31,52 @@ namespace Paint
             // ---------------- end -------
 
 
-            // Add ToolStripMenuItem to the MainMenu with properties
+            // Add ToolStripMenuItem to the MainMenu with sub items
             ToolStripMenuItem fileMenu = new ToolStripMenuItem();
 
             fileMenu.Text = "Filer";
             AddMenuStripItem("Ny", fileMenu);
+            AddMenuStripItem("Åbn", fileMenu);
+            //AddMenuStripItem("Gem", fileMenu);
+            //AddMenuStripItem("Gem som", fileMenu);
+
+            // seperator 
+            ToolStripSeparator separator1 = new ToolStripSeparator();
+            fileMenu.DropDownItems.Insert(fileMenu.DropDownItems.Count, separator1);
+
+
+            string[] test = { "Gem", "Gem som" };
+
+            AddMenuStripRange(test, fileMenu);
+
 
             mainMenu.Items.Add(fileMenu);
-            
-
         }
+        
+        // test for multiple use cases
+        // inspiration from https://stackoverflow.com/questions/1757574/dynamically-adding-toolstripmenuitems-to-a-menustrip-c-winforms
+        void AddMenuStripRange(string[] texts, ToolStripMenuItem menu)
+        {
+            ToolStripMenuItem[] items = new ToolStripMenuItem[texts.Length];
+            for (int i = 0; i < items.Length; i++)
+            {
+                items[i] = new ToolStripMenuItem();
+                items[i].Text = texts[i];
+            }
 
+            menu.DropDownItems.AddRange(items);
+        }
+        
         void AddMenuStripItem(string text, ToolStripMenuItem menu)
         {
             ToolStripMenuItem item = new ToolStripMenuItem();
             item.Text = text;
-            // TODO eventhandler logik
+            // item.Image 
+            // item.ShortcutKeys
+            // item.ShowShortcutKeys
             // TODO flere egenskaber
+
+            // TODO eventhandler logik
 
             menu.DropDownItems.Insert(menu.DropDownItems.Count, item);
         }
