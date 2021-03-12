@@ -24,21 +24,6 @@ namespace Paint
             Controls.Add(_canvas.View);
 
             _tool = new BrushTool();
-        }
-
-        public void CanvasView_MouseDown(object sender, MouseEventArgs e)
-        {
-            _tool.OnMouseDown(sender, e);
-        }
-
-        public void CanvasView_MouseUp(object sender, MouseEventArgs e)
-        {
-            _tool.OnMouseUp(sender, e);
-        }
-
-        public void CanvasView_MouseMove(object sender, MouseEventArgs e)
-        {
-            _tool.OnMouseMove(sender, e);
 
             // ---------------- Main menu that holds multiple menu items -------
             MenuStrip mainMenu = new MenuStrip();
@@ -76,7 +61,7 @@ namespace Paint
 
             mainMenu.Items.Add(fileMenu);
         }
-        
+
         // test for multiple use cases
         // inspiration from https://stackoverflow.com/questions/1757574/dynamically-adding-toolstripmenuitems-to-a-menustrip-c-winforms
         void AddMenuStripRange(string[] texts, ToolStripMenuItem menu)
@@ -90,7 +75,7 @@ namespace Paint
 
             menu.DropDownItems.AddRange(items);
         }
-        
+
         void AddMenuStripItem(string text, ToolStripMenuItem menu)
         {
             ToolStripMenuItem item = new ToolStripMenuItem();
@@ -104,5 +89,21 @@ namespace Paint
 
             menu.DropDownItems.Insert(menu.DropDownItems.Count, item);
         }
+
+        public void CanvasView_MouseDown(object sender, MouseEventArgs e)
+        {
+            _tool.OnMouseDown(sender, e);
+        }
+
+        public void CanvasView_MouseUp(object sender, MouseEventArgs e)
+        {
+            _tool.OnMouseUp(sender, e);
+        }
+
+        public void CanvasView_MouseMove(object sender, MouseEventArgs e)
+        {
+            _tool.OnMouseMove(sender, e);
+        }
+
     }
 }
