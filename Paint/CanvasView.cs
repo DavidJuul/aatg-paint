@@ -17,11 +17,12 @@ namespace Paint
             Canvas = canvas;
 
             Dock = DockStyle.Fill;
+            ResizeRedraw = true;
 
-            Paint += this_Paint;
+            Paint += OnPaint;
         }
 
-        public void this_Paint(object sender, PaintEventArgs e)
+        public void OnPaint(object sender, PaintEventArgs e)
         {
             using (Graphics graphics = CreateGraphics())
             {
