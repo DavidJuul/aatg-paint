@@ -29,6 +29,13 @@ namespace Paint
             DrawLine(new Pen(Color.Black, 5), new Point(0, 0), new Point(800, 600));
         }
 
+        public void FillCircle(Pen pen, Point point)
+        {
+            Brush brush = new SolidBrush(pen.Color);
+            _graphics.FillEllipse(brush, point.X - pen.Width / 2, point.Y - pen.Width / 2, pen.Width, pen.Width);
+            View.this_Paint(this, null);
+        }
+
         public void DrawLine(Pen pen, Point point1, Point point2)
         {
             _graphics.DrawLine(pen, point1, point2);

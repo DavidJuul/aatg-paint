@@ -41,6 +41,9 @@ namespace Paint
 
             CanvasView canvasView = sender as CanvasView;
             _previousPoint = canvasView.GetBitmapLocation(e.Location);
+
+            Canvas canvas = canvasView.Canvas;
+            canvas.FillCircle(_pen, _previousPoint);
         }
 
         public override void OnMouseUp(object sender, MouseEventArgs e)
