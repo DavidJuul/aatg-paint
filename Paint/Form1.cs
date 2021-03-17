@@ -42,52 +42,61 @@ namespace Paint
 
             // Add ToolStripMenuItem to the MainMenu with sub items
             ToolStripMenuItem fileMenu = new ToolStripMenuItem();
-
             fileMenu.Text = "Filer";
-            AddMenuStripItem("Ny", fileMenu);
-            AddMenuStripItem("Åbn", fileMenu);
-            //AddMenuStripItem("Gem", fileMenu);
-            //AddMenuStripItem("Gem som", fileMenu);
-
-            // seperator 
-            ToolStripSeparator separator1 = new ToolStripSeparator();
-            fileMenu.DropDownItems.Insert(fileMenu.DropDownItems.Count, separator1);
-
-
-            string[] test = { "Gem", "Gem som" };
-
-            AddMenuStripRange(test, fileMenu);
-
+            AddFileMenuItems(fileMenu);
 
             mainMenu.Items.Add(fileMenu);
         }
 
-        // test for multiple use cases
-        // inspiration from https://stackoverflow.com/questions/1757574/dynamically-adding-toolstripmenuitems-to-a-menustrip-c-winforms
-        void AddMenuStripRange(string[] texts, ToolStripMenuItem menu)
+        void AddFileMenuItems(ToolStripMenuItem fileMenu)
         {
-            ToolStripMenuItem[] items = new ToolStripMenuItem[texts.Length];
-            for (int i = 0; i < items.Length; i++)
-            {
-                items[i] = new ToolStripMenuItem();
-                items[i].Text = texts[i];
-            }
+            // Create needed menu items
+            ToolStripMenuItem itemNew = new ToolStripMenuItem();
+            itemNew.Text = "Ny";
+            itemNew.ShortcutKeys = Keys.Control | Keys.N;
+            itemNew.ShowShortcutKeys = true;
+            itemNew.Click += Menu_New_click;
 
-            menu.DropDownItems.AddRange(items);
+            ToolStripMenuItem itemOpen = new ToolStripMenuItem();
+            itemOpen.Text = "Åbn";
+            itemOpen.ShortcutKeys = Keys.Control | Keys.O;
+            itemOpen.ShowShortcutKeys = true;
+            itemOpen.Click += Menu_Open_click;
+
+            ToolStripMenuItem itemSaveAs = new ToolStripMenuItem();
+            itemSaveAs.Text = "Gem som";
+            itemSaveAs.ShortcutKeys = Keys.Control | Keys.S;
+            itemSaveAs.ShowShortcutKeys = true;
+            itemSaveAs.Click += Menu_SaveAs_click;
+
+            ToolStripSeparator separator1 = new ToolStripSeparator();
+
+            ToolStripMenuItem itemClose = new ToolStripMenuItem();
+            itemClose.Text = "Luk";
+            itemClose.ShortcutKeyDisplayString = "Alt+F4"; // Alt+F4 is already implemented to close current program, so we are not changing the shortcut, but adding text instead
+            itemClose.ShowShortcutKeys = true;
+            itemClose.Click += Menu_SaveAs_click;
+
+            // Add items to the file menu
+            fileMenu.DropDownItems.Add(itemNew);
+            fileMenu.DropDownItems.Add(itemOpen);
+            fileMenu.DropDownItems.Add(itemSaveAs);
+            fileMenu.DropDownItems.Add(separator1);
+            fileMenu.DropDownItems.Add(itemClose);
         }
 
-        void AddMenuStripItem(string text, ToolStripMenuItem menu)
+        public void Menu_New_click(object sender, EventArgs e)
         {
-            ToolStripMenuItem item = new ToolStripMenuItem();
-            item.Text = text;
-            // item.Image 
-            // item.ShortcutKeys
-            // item.ShowShortcutKeys
-            // TODO flere egenskaber
+            // TODO clear canvas
+        }
 
-            // TODO eventhandler logik
-
-            menu.DropDownItems.Insert(menu.DropDownItems.Count, item);
+        public void Menu_Open_click(object sender, EventArgs e)
+        {
+            // TODO open an old saved canvas
+        }
+        public void Menu_SaveAs_click(object sender, EventArgs e)
+        {
+            // TODO save canvas
         }
 
         public void CanvasView_MouseDown(object sender, MouseEventArgs e)
