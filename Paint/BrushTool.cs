@@ -1,6 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,8 @@ namespace Paint
         {
             Color = Color.Black;
             Width = 5;
+
+            _pen.StartCap = _pen.EndCap = LineCap.Round;
         }
 
         public override void OnMouseDown(object sender, MouseEventArgs e)

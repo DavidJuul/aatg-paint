@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace Paint
 
             Bitmap = new Bitmap(800, 600);
             _graphics = Graphics.FromImage(Bitmap);
+            _graphics.SmoothingMode = SmoothingMode.AntiAlias;
             _graphics.Clear(Color.White);
 
             // TODO: Remove example line.
