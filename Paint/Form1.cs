@@ -25,6 +25,10 @@ namespace Paint
 
             _tool = new BrushTool();
 
+            ToolsView toolsView = new ToolsView();
+            toolsView.AddTool(new BrushTool(), "Brush");
+            Controls.Add(toolsView);
+
             // ---------------- Main menu that holds multiple menu items -------
             MenuStrip mainMenu = new MenuStrip();
 
@@ -126,6 +130,12 @@ namespace Paint
         public void CanvasView_MouseMove(object sender, MouseEventArgs e)
         {
             _tool.OnMouseMove(sender, e);
+        }
+
+        public void ToolView_Click(object sender, EventArgs e)
+        {
+            ToolView toolView = (sender as Label).Parent as ToolView;
+            _tool = toolView.Tool;
         }
     }
 }
