@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,10 +22,18 @@ namespace Paint
 
             Bitmap = new Bitmap(800, 600);
             _graphics = Graphics.FromImage(Bitmap);
+            _graphics.SmoothingMode = SmoothingMode.AntiAlias;
             _graphics.Clear(Color.White);
 
             // TODO: Remove example line.
             DrawLine(new Pen(Color.Black, 5), new Point(0, 0), new Point(800, 600));
+        }
+
+        public void FillCircle(Pen pen, Point point)
+        {
+            Brush brush = new SolidBrush(pen.Color);
+            _graphics.FillEllipse(brush, point.X - pen.Width / 2, point.Y - pen.Width / 2, pen.Width, pen.Width);
+            View.this_Paint(this, null);
         }
 
         public void DrawLine(Pen pen, Point point1, Point point2)

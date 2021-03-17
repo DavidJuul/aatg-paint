@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,11 +31,19 @@ namespace Paint
         {
             Color = Color.Black;
             Width = 5;
+
+            _pen.StartCap = _pen.EndCap = LineCap.Round;
         }
 
         public override void OnMouseDown(object sender, MouseEventArgs e)
         {
             _drawing = true;
+
+            CanvasView canvasView = sender as CanvasView;
+            _previousPoint = canvasView.GetBitmapLocation(e.Location);
+
+            Canvas canvas = canvasView.Canvas;
+            canvas.FillCircle(_pen, _previousPoint);
         }
 
         public override void OnMouseUp(object sender, MouseEventArgs e)
@@ -46,13 +55,10 @@ namespace Paint
         {
             if (_drawing)
             {
-                Point currentPoint = new Point(e.X, e.Y);
-                if (_previousPoint == Point.Empty)
-                {
-                    _previousPoint = currentPoint;
-                }
+                CanvasView canvasView = sender as CanvasView;
+                Point currentPoint = canvasView.GetBitmapLocation(e.Location);
 
-                Canvas canvas = (sender as CanvasView).Canvas;
+                Canvas canvas = canvasView.Canvas;
                 canvas.DrawLine(_pen, _previousPoint, currentPoint);
 
                 _previousPoint = currentPoint;

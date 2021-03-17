@@ -25,6 +25,16 @@ namespace Paint
             MouseMove += this_MouseMove;
         }
 
+        public Point GetBitmapLocation(Point mouseLocation)
+        {
+            Point bitmapLocation = new Point();
+
+            bitmapLocation.X = mouseLocation.X * Canvas.Bitmap.Width / Width;
+            bitmapLocation.Y = mouseLocation.Y * Canvas.Bitmap.Height / Height;
+
+            return bitmapLocation;
+        }
+
         public void this_Paint(object sender, PaintEventArgs e)
         {
             using (Graphics graphics = CreateGraphics())
