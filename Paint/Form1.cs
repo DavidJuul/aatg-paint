@@ -75,7 +75,7 @@ namespace Paint
             itemClose.Text = "Luk";
             itemClose.ShortcutKeyDisplayString = "Alt+F4"; // Alt+F4 is already implemented to close current program, so we are not changing the shortcut, but adding text instead
             itemClose.ShowShortcutKeys = true;
-            itemClose.Click += Menu_SaveAs_click;
+            itemClose.Click += Menu_Close_click;
 
             // Add items to the file menu
             fileMenu.DropDownItems.Add(itemNew);
@@ -107,6 +107,10 @@ namespace Paint
             {
                 _canvas.Save(saveFileDialog.FileName);
             }
+        }
+        public void Menu_Close_click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
 
         public void CanvasView_MouseDown(object sender, MouseEventArgs e)
