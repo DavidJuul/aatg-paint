@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -46,13 +46,14 @@ namespace Paint
         {
             if (_drawing)
             {
-                Point currentPoint = new Point(e.X, e.Y);
+                CanvasView canvasView = sender as CanvasView;
+                Point currentPoint = canvasView.GetBitmapLocation(e.Location);
                 if (_previousPoint == Point.Empty)
                 {
                     _previousPoint = currentPoint;
                 }
 
-                Canvas canvas = (sender as CanvasView).Canvas;
+                Canvas canvas = canvasView.Canvas;
                 canvas.DrawLine(_pen, _previousPoint, currentPoint);
 
                 _previousPoint = currentPoint;
