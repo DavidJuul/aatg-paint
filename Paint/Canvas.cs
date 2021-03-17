@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,6 +41,17 @@ namespace Paint
         {
             _graphics.DrawLine(pen, point1, point2);
             View.this_Paint(this, null);
+        }
+
+        public void Clear()
+        {
+            _graphics.Clear(Color.White);
+            View.this_Paint(this, null);
+        }
+
+        public void Save(string filePath)
+        {
+            Bitmap.Save(filePath);
         }
     }
 }

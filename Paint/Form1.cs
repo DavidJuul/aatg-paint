@@ -87,7 +87,7 @@ namespace Paint
 
         public void Menu_New_click(object sender, EventArgs e)
         {
-            // TODO clear canvas
+            _canvas.Clear();
         }
 
         public void Menu_Open_click(object sender, EventArgs e)
@@ -96,7 +96,16 @@ namespace Paint
         }
         public void Menu_SaveAs_click(object sender, EventArgs e)
         {
-            // TODO save canvas
+            DialogResult result = saveFileDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                _canvas.Save(saveFileDialog.FileName);
+            }
+        }
+        public void Menu_Close_click(object sender, EventArgs e)
+        {
+            _canvas.Clear();
         }
 
         public void CanvasView_MouseDown(object sender, MouseEventArgs e)
@@ -113,6 +122,5 @@ namespace Paint
         {
             _tool.OnMouseMove(sender, e);
         }
-
     }
 }
