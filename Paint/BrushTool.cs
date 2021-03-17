@@ -35,6 +35,9 @@ namespace Paint
         public override void OnMouseDown(object sender, MouseEventArgs e)
         {
             _drawing = true;
+
+            CanvasView canvasView = sender as CanvasView;
+            _previousPoint = canvasView.GetBitmapLocation(e.Location);
         }
 
         public override void OnMouseUp(object sender, MouseEventArgs e)
@@ -48,10 +51,6 @@ namespace Paint
             {
                 CanvasView canvasView = sender as CanvasView;
                 Point currentPoint = canvasView.GetBitmapLocation(e.Location);
-                if (_previousPoint == Point.Empty)
-                {
-                    _previousPoint = currentPoint;
-                }
 
                 Canvas canvas = canvasView.Canvas;
                 canvas.DrawLine(_pen, _previousPoint, currentPoint);
