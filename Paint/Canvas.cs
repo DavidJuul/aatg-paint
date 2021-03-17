@@ -15,7 +15,7 @@ namespace Paint
 
         public CanvasView View { get; }
 
-        public Bitmap Bitmap { get; }
+        public Bitmap Bitmap { get; private set; }
 
         public Canvas()
         {
@@ -52,6 +52,12 @@ namespace Paint
         public void Save(string filePath)
         {
             Bitmap.Save(filePath);
+        }
+
+        public void Open(string filePath)
+        {
+            Bitmap = new Bitmap(filePath);
+            View.this_Paint(this, null);
         }
     }
 }

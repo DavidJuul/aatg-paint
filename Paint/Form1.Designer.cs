@@ -29,11 +29,19 @@
         private void InitializeComponent()
         {
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // saveFileDialog
             // 
             this.saveFileDialog.Filter = "png files|*.png|jpeg files|*.jpeg|jpg files|*.jpg|bitmap files|*.bmp";
+            this.saveFileDialog.Title = "Save";
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog";
+            this.openFileDialog.Filter = "png files|*.png|jpeg files|*.jpeg|jpg files|*.jpg|bitmap files|*.bmp";
+            this.openFileDialog.Title = "Open";
             // 
             // Form1
             // 
@@ -49,6 +57,7 @@
         #endregion
 
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
     }
 }
 
