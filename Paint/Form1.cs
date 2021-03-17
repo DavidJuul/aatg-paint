@@ -29,20 +29,21 @@ namespace Paint
             toolsView.AddTool(new BrushTool(), "Brush");
             Controls.Add(toolsView);
 
-            // ---------------- Main menu that holds multiple menu items -------
+            AddMenu();
+        }
+
+        void AddMenu()
+        {
             MenuStrip mainMenu = new MenuStrip();
 
-            // fileMenu colors
             mainMenu.BackColor = Color.LightGray;
             mainMenu.ForeColor = Color.Black;
 
             mainMenu.Font = new Font("Roboto", 16);
             mainMenu.Text = "Menu";
 
-            this.MainMenuStrip = mainMenu;
+            MainMenuStrip = mainMenu;
             Controls.Add(mainMenu);
-            // ---------------- end -------
-
 
             // Add ToolStripMenuItem to the MainMenu with sub items
             ToolStripMenuItem fileMenu = new ToolStripMenuItem();
@@ -58,19 +59,16 @@ namespace Paint
             ToolStripMenuItem itemNew = new ToolStripMenuItem();
             itemNew.Text = "Ny";
             itemNew.ShortcutKeys = Keys.Control | Keys.N;
-            itemNew.ShowShortcutKeys = true;
             itemNew.Click += Menu_New_click;
 
             ToolStripMenuItem itemOpen = new ToolStripMenuItem();
             itemOpen.Text = "Åbn";
             itemOpen.ShortcutKeys = Keys.Control | Keys.O;
-            itemOpen.ShowShortcutKeys = true;
             itemOpen.Click += Menu_Open_click;
 
             ToolStripMenuItem itemSaveAs = new ToolStripMenuItem();
             itemSaveAs.Text = "Gem som";
             itemSaveAs.ShortcutKeys = Keys.Control | Keys.S;
-            itemSaveAs.ShowShortcutKeys = true;
             itemSaveAs.Click += Menu_SaveAs_click;
 
             ToolStripSeparator separator1 = new ToolStripSeparator();
@@ -78,7 +76,6 @@ namespace Paint
             ToolStripMenuItem itemClose = new ToolStripMenuItem();
             itemClose.Text = "Luk";
             itemClose.ShortcutKeyDisplayString = "Alt+F4"; // Alt+F4 is already implemented to close current program, so we are not changing the shortcut, but adding text instead
-            itemClose.ShowShortcutKeys = true;
             itemClose.Click += Menu_Close_click;
 
             // Add items to the file menu
