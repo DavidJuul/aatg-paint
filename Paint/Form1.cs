@@ -32,7 +32,7 @@ namespace Paint
             AddMenu();
         }
 
-        void AddMenu()
+        private void AddMenu()
         {
             MenuStrip mainMenu = new MenuStrip();
 
@@ -53,7 +53,7 @@ namespace Paint
             mainMenu.Items.Add(fileMenu);
         }
 
-        void AddFileMenuItems(ToolStripMenuItem fileMenu)
+        private void AddFileMenuItems(ToolStripMenuItem fileMenu)
         {
             // Create needed menu items
             ToolStripMenuItem itemNew = new ToolStripMenuItem();
