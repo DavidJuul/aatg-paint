@@ -11,32 +11,21 @@ namespace Paint
 {
     class BucketTool : Tool
     {
-        private bool _drawing = false;
-
-        public Color Color;
-
         public BucketTool()
         {
-            Color = Color.White;
+            Color = Color.Black;
         }
 
         public override void OnMouseDown(object sender, MouseEventArgs e)
         {
-            _drawing = true;
-
             CanvasView canvasView = sender as CanvasView;
 
             Canvas canvas = canvasView.Canvas;
             canvas.Fill(Color);
         }
 
-        public override void OnMouseUp(object sender, MouseEventArgs e)
-        {
-            _drawing = false;
-        }
+        public override void OnMouseUp(object sender, MouseEventArgs e) { }
 
-        public override void OnMouseMove(object sender, MouseEventArgs e)
-        {
-        }
+        public override void OnMouseMove(object sender, MouseEventArgs e) { }
     }
 }
