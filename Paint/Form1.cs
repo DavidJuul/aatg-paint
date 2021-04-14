@@ -141,9 +141,24 @@ namespace Paint
                 DialogResult result = toolView.OptionDialog.ShowDialog();
                 if (result == DialogResult.OK)
                 {
+                    SizeDialog sizeDialog = toolView.OptionDialog as SizeDialog;
                     ColorDialog colorDialog = toolView.OptionDialog as ColorDialog;
 
-                    if (colorDialog != null)
+                    if (sizeDialog != null)
+                    {
+                        BrushTool brushTool = _tool as BrushTool;
+                        EraseTool eraseTool = _tool as EraseTool;
+
+                        if (brushTool != null)
+                        {
+                            brushTool.Width = sizeDialog.Size;
+                        }
+                        else if (eraseTool != null)
+                        {
+                            eraseTool.Width = sizeDialog.Size;
+                        }
+                    }
+                    else if (colorDialog != null)
                     {
                         BrushTool brushTool = _tool as BrushTool;
 

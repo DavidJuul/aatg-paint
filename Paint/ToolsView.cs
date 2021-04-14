@@ -25,6 +25,7 @@ namespace Paint
             AddTool(new EraseTool(), "Erase", Properties.Resources.Tool);
             AddTool(new BucketTool(), "Bucket", Properties.Resources.Tool);
 
+            AddOption(new SizeDialog(), "Size", Properties.Resources.Tool);
             AddOption(new ColorDialog(), "Color", Properties.Resources.Tool);
         }
 
