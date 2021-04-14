@@ -22,12 +22,17 @@ namespace Paint
             View = new CanvasView(this);
 
             Bitmap = new Bitmap(800, 600);
-            _graphics = Graphics.FromImage(Bitmap);
-            _graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            CreateGraphics();
             _graphics.Clear(Color.White);
 
             // TODO: Remove example line.
             DrawLine(new Pen(Color.Black, 5), new Point(0, 0), new Point(800, 600));
+        }
+
+        private void CreateGraphics()
+        {
+            _graphics = Graphics.FromImage(Bitmap);
+            _graphics.SmoothingMode = SmoothingMode.AntiAlias;
         }
 
         public void FillCircle(Pen pen, Point point)
@@ -70,7 +75,7 @@ namespace Paint
         public void Open(string filePath)
         {
             Bitmap = new Bitmap(filePath);
-            _graphics = Graphics.FromImage(Bitmap);
+            CreateGraphics();
             View.this_Paint(this, null);
         }
     }
