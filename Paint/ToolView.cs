@@ -11,11 +11,24 @@ namespace Paint
     class ToolView : PictureBox
     {
         public Tool Tool { get; }
+        public CommonDialog OptionDialog { get; }
 
         public ToolView(Tool tool, string title, Bitmap icon)
         {
             Tool = tool;
 
+            CreateView(title, icon);
+        }
+
+        public ToolView(CommonDialog optionDialog, string title, Bitmap icon)
+        {
+            OptionDialog = optionDialog;
+
+            CreateView(title, icon);
+        }
+
+        private void CreateView(string title, Bitmap icon)
+        {
             Width = 40;
             Height = 40;
             BorderStyle = BorderStyle.FixedSingle;

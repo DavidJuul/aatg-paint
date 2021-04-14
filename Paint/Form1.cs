@@ -131,7 +131,29 @@ namespace Paint
         public void ToolView_Click(object sender, EventArgs e)
         {
             ToolView toolView = (sender as Label).Parent as ToolView;
-            _tool = toolView.Tool;
+            if (toolView.Tool != null)
+            {
+                _tool = toolView.Tool;
+            }
+
+            else if (toolView.OptionDialog != null)
+            {
+                DialogResult result = toolView.OptionDialog.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    ColorDialog colorDialog = toolView.OptionDialog as ColorDialog;
+
+                    if (colorDialog != null)
+                    {
+                        BrushTool brushTool = _tool as BrushTool;
+
+                        if (brushTool != null)
+                        {
+                            brushTool.Color = colorDialog.Color;
+                        }
+                    }
+                }
+            }
         }
     }
 }
