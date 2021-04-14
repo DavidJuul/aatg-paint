@@ -28,6 +28,7 @@ namespace Paint
             ToolsView toolsView = new ToolsView();
             toolsView.AddTool(new BrushTool(), "Brush");
             toolsView.AddTool(new EraseTool(), "Erase");
+            toolsView.AddTool(new BucketTool(), "Bucket");
             Controls.Add(toolsView);
 
             AddMenu();

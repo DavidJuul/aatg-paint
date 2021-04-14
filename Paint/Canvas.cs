@@ -56,6 +56,12 @@ namespace Paint
             View.this_Paint(this, null);
         }
 
+        public void Fill(Color Color)
+        {
+            _graphics.Clear(Color);
+            View.this_Paint(this, null);
+        }
+
         public void Save(string filePath)
         {
             Bitmap.Save(filePath);

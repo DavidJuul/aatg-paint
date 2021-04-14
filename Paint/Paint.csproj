@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BrushTool.cs" />
+    <Compile Include="BucketTool.cs" />
     <Compile Include="Canvas.cs" />
     <Compile Include="CanvasView.cs">
       <SubType>Component</SubType>
