@@ -146,26 +146,11 @@ namespace Paint
 
                     if (sizeDialog != null)
                     {
-                        BrushTool brushTool = _tool as BrushTool;
-                        EraseTool eraseTool = _tool as EraseTool;
-
-                        if (brushTool != null)
-                        {
-                            brushTool.Width = sizeDialog.Size;
-                        }
-                        else if (eraseTool != null)
-                        {
-                            eraseTool.Width = sizeDialog.Size;
-                        }
+                        _tool.Size = sizeDialog.Size;
                     }
                     else if (colorDialog != null)
                     {
-                        BrushTool brushTool = _tool as BrushTool;
-
-                        if (brushTool != null)
-                        {
-                            brushTool.Color = colorDialog.Color;
-                        }
+                        _tool.Color = colorDialog.Color;
                     }
                 }
             }

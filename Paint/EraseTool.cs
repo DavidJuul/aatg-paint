@@ -15,7 +15,7 @@ namespace Paint
         private bool _drawing = false;
         private Point _previousPoint;
 
-        public float Width
+        public override float Size
         {
             get { return _pen.Width; }
             set { _pen.Width = value; }
@@ -23,7 +23,7 @@ namespace Paint
 
         public EraseTool()
         {
-            Width = 5;
+            Size = 5;
 
             _pen.StartCap = _pen.EndCap = LineCap.Square;
         }

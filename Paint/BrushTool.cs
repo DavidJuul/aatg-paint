@@ -15,13 +15,13 @@ namespace Paint
         private bool _drawing = false;
         private Point _previousPoint;
 
-        public Color Color
+        public override Color Color
         {
             get { return _pen.Color; }
             set { _pen.Color = value; }
         }
 
-        public float Width
+        public override float Size
         {
             get { return _pen.Width; }
             set { _pen.Width = value; }
@@ -30,7 +30,7 @@ namespace Paint
         public BrushTool()
         {
             Color = Color.Black;
-            Width = 5;
+            Size = 5;
 
             _pen.StartCap = _pen.EndCap = LineCap.Round;
         }
