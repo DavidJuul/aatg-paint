@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,11 +14,20 @@ namespace Paint
         {
             Dock = DockStyle.Top;
             Height = 50;
+            BorderStyle = BorderStyle.FixedSingle;
+
+            AddTools();
         }
 
-        public void AddTool(Tool tool, string title)
+        private void AddTools()
         {
-            ToolView toolView = new ToolView(tool, title);
+            AddTool(new BrushTool(), "Brush", Properties.Resources.Tool);
+            AddTool(new EraseTool(), "Erase", Properties.Resources.Tool);
+        }
+
+        private void AddTool(Tool tool, string title, Bitmap icon)
+        {
+            ToolView toolView = new ToolView(tool, title, icon);
             Controls.Add(toolView);
         }
     }
