@@ -64,6 +64,7 @@ namespace Paint
         public void Open(string filePath)
         {
             Bitmap = new Bitmap(filePath);
+            _graphics = Graphics.FromImage(Bitmap);
             View.this_Paint(this, null);
         }
     }
