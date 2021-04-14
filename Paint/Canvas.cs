@@ -37,6 +37,13 @@ namespace Paint
             View.this_Paint(this, null);
         }
 
+        public void FillSquare(Pen pen, Point point)
+        {
+            Brush brush = new SolidBrush(pen.Color);
+            _graphics.FillRectangle(brush, point.X - pen.Width / 2, point.Y - pen.Width / 2, pen.Width, pen.Width);
+            View.this_Paint(this, null);
+        }
+
         public void DrawLine(Pen pen, Point point1, Point point2)
         {
             _graphics.DrawLine(pen, point1, point2);
