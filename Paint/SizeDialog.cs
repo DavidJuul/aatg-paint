@@ -9,7 +9,7 @@ namespace Paint
 {
     class SizeDialog : CommonDialog
     {
-        public int Size { get; private set; }
+        public float Size { get; set; }
 
         protected override bool RunDialog(IntPtr hwndOwner)
         {
@@ -17,7 +17,7 @@ namespace Paint
 
             try
             {
-                Size = Int32.Parse(input);
+                Size = Single.Parse(input);
                 return true;
             }
             catch (FormatException)

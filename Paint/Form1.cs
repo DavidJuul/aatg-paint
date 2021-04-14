@@ -138,12 +138,21 @@ namespace Paint
 
             else if (toolView.OptionDialog != null)
             {
+                SizeDialog sizeDialog = toolView.OptionDialog as SizeDialog;
+                ColorDialog colorDialog = toolView.OptionDialog as ColorDialog;
+
+                if (sizeDialog != null)
+                {
+                    sizeDialog.Size = _tool.Size;
+                }
+                else if (colorDialog != null)
+                {
+                    colorDialog.Color = _tool.Color;
+                }
+
                 DialogResult result = toolView.OptionDialog.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    SizeDialog sizeDialog = toolView.OptionDialog as SizeDialog;
-                    ColorDialog colorDialog = toolView.OptionDialog as ColorDialog;
-
                     if (sizeDialog != null)
                     {
                         _tool.Size = sizeDialog.Size;
