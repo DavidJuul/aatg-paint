@@ -12,6 +12,8 @@ namespace Paint
     {
         public virtual float Size { get; set; }
         public virtual Color Color { get; set; }
+        public bool SizeChangeable { get; protected set; } = true;
+        public bool ColorChangeable { get; protected set; } = true;
 
         public abstract void OnMouseDown(object sender, MouseEventArgs e);
         public abstract void OnMouseUp(object sender, MouseEventArgs e);

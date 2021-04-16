@@ -11,7 +11,7 @@ namespace Paint
 {
     class EraseTool : Tool
     {
-        private Pen _pen = new Pen(Color.White, 0);
+        private Pen _pen;
         private bool _drawing = false;
         private Point _previousPoint;
 
@@ -23,6 +23,10 @@ namespace Paint
 
         public EraseTool()
         {
+            Color = Color.White;
+            ColorChangeable = false;
+
+            _pen = new Pen(Color, 0);
             Size = 5;
 
             _pen.StartCap = _pen.EndCap = LineCap.Round;

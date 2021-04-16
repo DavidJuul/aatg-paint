@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +13,9 @@ namespace Paint
     public partial class Form1 : Form
     {
         private Canvas _canvas;
+        private Bitmap _previousBitmap;
         private Tool _tool;
+        private ToolsView _toolsView;
 
         public Form1()
         {
@@ -25,10 +27,13 @@ namespace Paint
 
             _tool = new BrushTool();
 
-            ToolsView toolsView = new ToolsView();
-            Controls.Add(toolsView);
+            _toolsView = new ToolsView();
+            _toolsView.UpdateOptions(_tool);
+            Controls.Add(_toolsView);
 
             AddMenu();
+
+            KeyDown += this_KeyDown;
         }
 
         private void AddMenu()
@@ -85,6 +90,16 @@ namespace Paint
             fileMenu.DropDownItems.Add(itemClose);
         }
 
+        public void this_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (ModifierKeys == Keys.Control && e.KeyCode == Keys.Z)
+            {
+                Bitmap currentBitmap = _canvas.Bitmap;
+                _canvas.Replace(_previousBitmap);
+                _previousBitmap = currentBitmap;
+            }
+        }
+
         public void Menu_New_click(object sender, EventArgs e)
         {
             _canvas.Clear();
@@ -115,6 +130,8 @@ namespace Paint
 
         public void CanvasView_MouseDown(object sender, MouseEventArgs e)
         {
+            _previousBitmap = _canvas.Bitmap.Clone() as Bitmap;
+
             _tool.OnMouseDown(sender, e);
         }
 
@@ -134,32 +151,26 @@ namespace Paint
             if (toolView.Tool != null)
             {
                 _tool = toolView.Tool;
+                _toolsView.UpdateOptions(_tool);
             }
 
             else if (toolView.OptionDialog != null)
             {
-                SizeDialog sizeDialog = toolView.OptionDialog as SizeDialog;
-                ColorDialog colorDialog = toolView.OptionDialog as ColorDialog;
-
-                if (sizeDialog != null)
-                {
-                    sizeDialog.Size = _tool.Size;
-                }
-                else if (colorDialog != null)
-                {
-                    colorDialog.Color = _tool.Color;
-                }
-
                 DialogResult result = toolView.OptionDialog.ShowDialog();
                 if (result == DialogResult.OK)
                 {
+                    SizeDialog sizeDialog = toolView.OptionDialog as SizeDialog;
+                    ColorDialog colorDialog = toolView.OptionDialog as ColorDialog;
+
                     if (sizeDialog != null)
                     {
                         _tool.Size = sizeDialog.Size;
+                        toolView.Label.Text = "Size: " + sizeDialog.Size;
                     }
                     else if (colorDialog != null)
                     {
                         _tool.Color = colorDialog.Color;
+                        toolView.BackColor = colorDialog.Color;
                     }
                 }
             }

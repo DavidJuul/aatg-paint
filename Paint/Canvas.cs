@@ -64,6 +64,13 @@ namespace Paint
             View.this_Paint(this, null);
         }
 
+        public void Replace(Bitmap bitmap)
+        {
+            Bitmap = bitmap;
+            CreateGraphics();
+            View.this_Paint(this, null);
+        }
+
         public void Save(string filePath)
         {
             Bitmap.Save(filePath);
