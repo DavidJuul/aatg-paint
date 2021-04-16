@@ -31,10 +31,9 @@ namespace Paint
 
         private void CreateView(string title, Bitmap icon)
         {
-            Width = 60;
+            Width = 40;
             Height = 40;
             BorderStyle = BorderStyle.FixedSingle;
-
             Image = icon;
             SizeMode = PictureBoxSizeMode.StretchImage;
 
@@ -43,9 +42,22 @@ namespace Paint
             Label.Width = Width;
             Label.Height = Height;
             Label.TextAlign = ContentAlignment.BottomCenter;
+            Label.Padding = new Padding(0, 0, 0, 3);
             Label.BackColor = Color.Transparent;
+            Label.MouseHover += this_MouseHover;
+            Label.MouseLeave += this_MouseLeave;
             Label.Click += this_Click;
             Controls.Add(Label);
+        }
+
+        private void this_MouseHover(object sender, EventArgs e)
+        {
+            BorderStyle = BorderStyle.Fixed3D;
+        }
+
+        private void this_MouseLeave(object sender, EventArgs e)
+        {
+            BorderStyle = BorderStyle.FixedSingle;
         }
 
         private void this_Click(object sender, EventArgs e)

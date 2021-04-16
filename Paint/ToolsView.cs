@@ -27,7 +27,7 @@ namespace Paint
             AddTool(new TextTool(), "Tekst", Properties.Resources.Tool);
 
             AddOption(new SizeDialog(), "", Properties.Resources.Tool);
-            AddOption(new ColorDialog(), "", Properties.Resources.Tool);
+            AddOption(new ColorDialog(), "", null);
         }
 
         public void UpdateOptions(Tool tool)
