@@ -13,7 +13,7 @@ namespace Paint
 
         protected override bool RunDialog(IntPtr hwndOwner)
         {
-            string input = Microsoft.VisualBasic.Interaction.InputBox("", "Size", Size.ToString());
+            string input = Microsoft.VisualBasic.Interaction.InputBox("", "Størrelse", Size.ToString());
 
             try
             {

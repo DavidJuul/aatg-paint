@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -170,7 +170,7 @@ namespace Paint
                     if (sizeDialog != null)
                     {
                         _tool.Size = sizeDialog.Size;
-                        toolView.Label.Text = "Size: " + sizeDialog.Size;
+                        toolView.Label.Text = "Str.: " + sizeDialog.Size;
                     }
                     else if (colorDialog != null)
                     {
