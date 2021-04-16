@@ -14,6 +14,7 @@ namespace Paint
         public BucketTool()
         {
             Color = Color.Black;
+            SizeChangeable = false;
         }
 
         public override void OnMouseDown(object sender, MouseEventArgs e)

@@ -41,13 +41,30 @@ namespace Paint
 
                     if (sizeDialog != null)
                     {
-                        sizeDialog.Size = tool.Size;
-                        toolView.Label.Text = "Size: " + sizeDialog.Size;
+                        if (tool.SizeChangeable)
+                        {
+                            sizeDialog.Size = tool.Size;
+
+                            toolView.Visible = true;
+                            toolView.Label.Text = "Size: " + sizeDialog.Size;
+                        }
+                        else
+                        {
+                            toolView.Visible = false;
+                        }
                     }
                     else if (colorDialog != null)
                     {
-                        colorDialog.Color = tool.Color;
-                        toolView.BackColor = colorDialog.Color;
+                        if (tool.ColorChangeable)
+                        {
+                            colorDialog.Color = tool.Color;
+                            toolView.Visible = true;
+                            toolView.BackColor = colorDialog.Color;
+                        }
+                        else
+                        {
+                            toolView.Visible = false;
+                        }
                     }
                 }
             }
