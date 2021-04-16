@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +13,6 @@ namespace Paint
     public partial class Form1 : Form
     {
         private Canvas _canvas;
-        private Bitmap _previousBitmap;
         private Tool _tool;
         private ToolsView _toolsView;
 
@@ -95,13 +94,11 @@ namespace Paint
             fileMenu.DropDownItems.Add(itemClose);
         }
 
-        public void this_KeyDown(object sender, KeyEventArgs e)
+        private void this_KeyDown(object sender, KeyEventArgs e)
         {
             if (ModifierKeys == Keys.Control && e.KeyCode == Keys.Z)
             {
-                Bitmap currentBitmap = _canvas.Bitmap;
-                _canvas.Replace(_previousBitmap);
-                _previousBitmap = currentBitmap;
+                _canvas.Undo();
             }
         }
 
@@ -135,7 +132,7 @@ namespace Paint
 
         public void CanvasView_MouseDown(object sender, MouseEventArgs e)
         {
-            _previousBitmap = _canvas.Bitmap.Clone() as Bitmap;
+            _canvas.SaveState();
 
             _tool.OnMouseDown(sender, e);
         }

@@ -16,6 +16,7 @@ namespace Paint
         public CanvasView View { get; }
 
         public Bitmap Bitmap { get; private set; }
+        private Bitmap _previousBitmap;
 
         public Canvas()
         {
@@ -71,13 +72,6 @@ namespace Paint
             View.this_Paint(this, null);
         }
 
-        public void Replace(Bitmap bitmap)
-        {
-            Bitmap = bitmap;
-            CreateGraphics();
-            View.this_Paint(this, null);
-        }
-
         public void Save(string filePath)
         {
             Bitmap.Save(filePath);
@@ -88,6 +82,22 @@ namespace Paint
             Bitmap = new Bitmap(filePath);
             CreateGraphics();
             View.this_Paint(this, null);
+        }
+
+        public void SaveState()
+        {
+            _previousBitmap = Bitmap.Clone() as Bitmap;
+        }
+
+        public void Undo()
+        {
+            Bitmap currentBitmap = Bitmap;
+
+            Bitmap = _previousBitmap;
+            CreateGraphics();
+            View.this_Paint(this, null);
+
+            _previousBitmap = currentBitmap;
         }
     }
 }
