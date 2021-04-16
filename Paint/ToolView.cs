@@ -15,6 +15,23 @@ namespace Paint
         
         public Label Label { get; private set; }
 
+        public bool Highlighted
+        {
+            get { return BorderStyle == BorderStyle.Fixed3D; }
+            set { BorderStyle = value ? BorderStyle.Fixed3D : BorderStyle.FixedSingle; }
+        }
+
+        private bool _selected;
+        public bool Selected
+        {
+            get { return _selected; }
+            set
+            {
+                _selected = value;
+                Highlighted = value;
+            }
+        }
+
         public ToolView(Tool tool, string title, Bitmap icon)
         {
             Tool = tool;
@@ -33,7 +50,7 @@ namespace Paint
         {
             Width = 40;
             Height = 40;
-            BorderStyle = BorderStyle.FixedSingle;
+            Highlighted = false;
             Image = icon;
             SizeMode = PictureBoxSizeMode.StretchImage;
 
@@ -52,12 +69,15 @@ namespace Paint
 
         private void this_MouseHover(object sender, EventArgs e)
         {
-            BorderStyle = BorderStyle.Fixed3D;
+            Highlighted = true;
         }
 
         private void this_MouseLeave(object sender, EventArgs e)
         {
-            BorderStyle = BorderStyle.FixedSingle;
+            if (!Selected)
+            {
+                Highlighted = false;
+            }
         }
 
         private void this_Click(object sender, EventArgs e)

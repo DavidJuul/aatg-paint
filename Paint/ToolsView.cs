@@ -35,36 +35,44 @@ namespace Paint
             foreach (Control control in Controls)
             {
                 ToolView toolView = control as ToolView;
-                if (toolView != null && toolView.OptionDialog != null)
+                if (toolView != null)
                 {
-                    SizeDialog sizeDialog = toolView.OptionDialog as SizeDialog;
-                    ColorDialog colorDialog = toolView.OptionDialog as ColorDialog;
-
-                    if (sizeDialog != null)
+                    if (toolView.Tool != null)
                     {
-                        if (tool.SizeChangeable)
-                        {
-                            sizeDialog.Size = tool.Size;
-
-                            toolView.Visible = true;
-                            toolView.Label.Text = "Str.: " + sizeDialog.Size;
-                        }
-                        else
-                        {
-                            toolView.Visible = false;
-                        }
+                        toolView.Selected = toolView.Tool == tool;
                     }
-                    else if (colorDialog != null)
+                    
+                    else if (toolView.OptionDialog != null)
                     {
-                        if (tool.ColorChangeable)
+                        SizeDialog sizeDialog = toolView.OptionDialog as SizeDialog;
+                        ColorDialog colorDialog = toolView.OptionDialog as ColorDialog;
+
+                        if (sizeDialog != null)
                         {
-                            colorDialog.Color = tool.Color;
-                            toolView.Visible = true;
-                            toolView.BackColor = colorDialog.Color;
+                            if (tool.SizeChangeable)
+                            {
+                                sizeDialog.Size = tool.Size;
+
+                                toolView.Visible = true;
+                                toolView.Label.Text = "Str.: " + sizeDialog.Size;
+                            }
+                            else
+                            {
+                                toolView.Visible = false;
+                            }
                         }
-                        else
+                        else if (colorDialog != null)
                         {
-                            toolView.Visible = false;
+                            if (tool.ColorChangeable)
+                            {
+                                colorDialog.Color = tool.Color;
+                                toolView.Visible = true;
+                                toolView.BackColor = colorDialog.Color;
+                            }
+                            else
+                            {
+                                toolView.Visible = false;
+                            }
                         }
                     }
                 }
