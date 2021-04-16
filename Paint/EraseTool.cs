@@ -25,7 +25,7 @@ namespace Paint
         {
             Size = 5;
 
-            _pen.StartCap = _pen.EndCap = LineCap.Square;
+            _pen.StartCap = _pen.EndCap = LineCap.Round;
         }
 
         public override void OnMouseDown(object sender, MouseEventArgs e)
@@ -36,7 +36,7 @@ namespace Paint
             _previousPoint = canvasView.GetBitmapLocation(e.Location);
 
             Canvas canvas = canvasView.Canvas;
-            canvas.FillSquare(_pen, _previousPoint);
+            canvas.FillCircle(_pen, _previousPoint);
         }
 
         public override void OnMouseUp(object sender, MouseEventArgs e)
