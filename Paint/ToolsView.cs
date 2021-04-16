@@ -29,6 +29,30 @@ namespace Paint
             AddOption(new ColorDialog(), "Color", Properties.Resources.Tool);
         }
 
+        public void UpdateOptions(Tool tool)
+        {
+            foreach (Control control in Controls)
+            {
+                ToolView toolView = control as ToolView;
+                if (toolView != null && toolView.OptionDialog != null)
+                {
+                    SizeDialog sizeDialog = toolView.OptionDialog as SizeDialog;
+                    ColorDialog colorDialog = toolView.OptionDialog as ColorDialog;
+
+                    if (sizeDialog != null)
+                    {
+                        sizeDialog.Size = tool.Size;
+                        toolView.Label.Text = "Size: " + sizeDialog.Size;
+                    }
+                    else if (colorDialog != null)
+                    {
+                        colorDialog.Color = tool.Color;
+                        toolView.BackColor = colorDialog.Color;
+                    }
+                }
+            }
+        }
+
         private void AddTool(Tool tool, string title, Bitmap icon)
         {
             ToolView toolView = new ToolView(tool, title, icon);

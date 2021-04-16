@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,8 +25,9 @@ namespace Paint
 
             _tool = new BrushTool();
 
-            ToolsView toolsView = new ToolsView();
-            Controls.Add(toolsView);
+            _toolsView = new ToolsView();
+            _toolsView.UpdateOptions(_tool);
+            Controls.Add(_toolsView);
 
             AddMenu();
         }
@@ -134,32 +135,26 @@ namespace Paint
             if (toolView.Tool != null)
             {
                 _tool = toolView.Tool;
+                _toolsView.UpdateOptions(_tool);
             }
 
             else if (toolView.OptionDialog != null)
             {
-                SizeDialog sizeDialog = toolView.OptionDialog as SizeDialog;
-                ColorDialog colorDialog = toolView.OptionDialog as ColorDialog;
-
-                if (sizeDialog != null)
-                {
-                    sizeDialog.Size = _tool.Size;
-                }
-                else if (colorDialog != null)
-                {
-                    colorDialog.Color = _tool.Color;
-                }
-
                 DialogResult result = toolView.OptionDialog.ShowDialog();
                 if (result == DialogResult.OK)
                 {
+                    SizeDialog sizeDialog = toolView.OptionDialog as SizeDialog;
+                    ColorDialog colorDialog = toolView.OptionDialog as ColorDialog;
+
                     if (sizeDialog != null)
                     {
                         _tool.Size = sizeDialog.Size;
+                        toolView.Label.Text = "Size: " + sizeDialog.Size;
                     }
                     else if (colorDialog != null)
                     {
                         _tool.Color = colorDialog.Color;
+                        toolView.BackColor = colorDialog.Color;
                     }
                 }
             }
