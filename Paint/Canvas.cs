@@ -24,9 +24,6 @@ namespace Paint
             Bitmap = new Bitmap(800, 600);
             CreateGraphics();
             _graphics.Clear(Color.White);
-
-            // TODO: Remove example line.
-            DrawLine(new Pen(Color.Black, 5), new Point(0, 0), new Point(800, 600));
         }
 
         private void CreateGraphics()
