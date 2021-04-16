@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,6 +25,8 @@ namespace Paint
             _canvas = new Canvas();
             Controls.Add(_canvas.View);
 
+            // TODO: Get BrushTool from ToolsView instead of creating a new one.
+            // Add a SelectTool to ToolsView and also use that to choose a default one?
             _tool = new BrushTool();
 
             _toolsView = new ToolsView();

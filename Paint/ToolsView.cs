@@ -21,12 +21,12 @@ namespace Paint
 
         private void AddTools()
         {
-            AddTool(new BrushTool(), "Brush", Properties.Resources.Tool);
-            AddTool(new EraseTool(), "Erase", Properties.Resources.Tool);
-            AddTool(new BucketTool(), "Bucket", Properties.Resources.Tool);
+            AddTool(new BrushTool(), "Pensel", Properties.Resources.Tool);
+            AddTool(new EraseTool(), "Viske", Properties.Resources.Tool);
+            AddTool(new BucketTool(), "Spand", Properties.Resources.Tool);
 
-            AddOption(new SizeDialog(), "Size", Properties.Resources.Tool);
-            AddOption(new ColorDialog(), "Color", Properties.Resources.Tool);
+            AddOption(new SizeDialog(), "", Properties.Resources.Tool);
+            AddOption(new ColorDialog(), "", Properties.Resources.Tool);
         }
 
         public void UpdateOptions(Tool tool)
@@ -46,7 +46,7 @@ namespace Paint
                             sizeDialog.Size = tool.Size;
 
                             toolView.Visible = true;
-                            toolView.Label.Text = "Size: " + sizeDialog.Size;
+                            toolView.Label.Text = "Str.: " + sizeDialog.Size;
                         }
                         else
                         {
