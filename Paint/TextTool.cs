@@ -11,26 +11,29 @@ namespace Paint
 {
     class TextTool : Tool
     {
-        private string _text = "test";
-        private FontFamily fontFamily = new FontFamily("Arial");
+        private FontFamily _fontFamily = new FontFamily("Arial");
         private Point _point;
 
         public TextTool()
-        {
+        { 
             Color = Color.Black;
-            Size = 5;
+            Size = 15;
         }
 
         public override void OnMouseDown(object sender, MouseEventArgs e)
         {
-            CanvasView canvasView = sender as CanvasView;
-            _point = canvasView.GetBitmapLocation(e.Location);
+            TextDialog textDialog = new TextDialog();
+            DialogResult dialogResult = textDialog.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                CanvasView canvasView = sender as CanvasView;
+                _point = canvasView.GetBitmapLocation(e.Location);
 
-            Canvas canvas = canvasView.Canvas;
+                Canvas canvas = canvasView.Canvas;
+                Font font = new Font(_fontFamily, Size);
 
-            Font font = new Font(fontFamily, Size);
-
-            canvas.DrawText(_text, font, Color, _point);
+                canvas.DrawText(textDialog.Text, font, Color, _point);
+            }            
         }
 
         public override void OnMouseMove(object sender, MouseEventArgs e)

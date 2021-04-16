@@ -65,6 +65,9 @@
     <Compile Include="SizeDialog.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="TextDialog.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="TextTool.cs" />
     <Compile Include="Tool.cs" />
     <EmbeddedResource Include="Form1.resx">
