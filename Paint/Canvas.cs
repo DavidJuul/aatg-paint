@@ -25,6 +25,7 @@ namespace Paint
             Bitmap = new Bitmap(1600, 800);
             CreateGraphics();
             _graphics.Clear(Color.White);
+            SaveState();
         }
 
         private void CreateGraphics()
@@ -37,38 +38,43 @@ namespace Paint
         {
             Brush brush = new SolidBrush(pen.Color);
             _graphics.FillEllipse(brush, point.X - pen.Width / 2, point.Y - pen.Width / 2, pen.Width, pen.Width);
-            View.this_Paint(this, null);
+            RefreshView();
         }
 
         public void FillSquare(Pen pen, Point point)
         {
             Brush brush = new SolidBrush(pen.Color);
             _graphics.FillRectangle(brush, point.X - pen.Width / 2, point.Y - pen.Width / 2, pen.Width, pen.Width);
-            View.this_Paint(this, null);
+            RefreshView();
         }
 
         public void DrawLine(Pen pen, Point point1, Point point2)
         {
             _graphics.DrawLine(pen, point1, point2);
-            View.this_Paint(this, null);
+            RefreshView();
         }
 
         public void DrawText(string text, Font font, Color color, Point point)
         {
             Brush brush = new SolidBrush(color);
             _graphics.DrawString(text, font, brush, point.X, point.Y);
-            View.this_Paint(this, null);
+            RefreshView();
         }
 
         public void Clear()
         {
             _graphics.Clear(Color.White);
-            View.this_Paint(this, null);
+            RefreshView();
         }
 
         public void Fill(Color Color)
         {
             _graphics.Clear(Color);
+            RefreshView();
+        }
+
+        public void RefreshView()
+        {
             View.this_Paint(this, null);
         }
 
@@ -81,7 +87,7 @@ namespace Paint
         {
             Bitmap = new Bitmap(filePath);
             CreateGraphics();
-            View.this_Paint(this, null);
+            RefreshView();
         }
 
         public void SaveState()
@@ -95,7 +101,7 @@ namespace Paint
 
             Bitmap = _previousBitmap;
             CreateGraphics();
-            View.this_Paint(this, null);
+            RefreshView();
 
             _previousBitmap = currentBitmap;
         }

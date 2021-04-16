@@ -105,16 +105,22 @@ namespace Paint
 
         public void Menu_New_click(object sender, EventArgs e)
         {
+            // TODO: Confirm that you want to delete the current Canvas.
+
             _canvas.Clear();
+            _canvas.SaveState();
         }
 
         public void Menu_Open_click(object sender, EventArgs e)
         {
+            // TODO: Confirm that you want to delete the current Canvas.
+
             DialogResult result = openFileDialog.ShowDialog();
 
             if (result == DialogResult.OK)
             {
                 _canvas.Open(openFileDialog.FileName);
+                _canvas.SaveState();
             }
         }
         public void Menu_SaveAs_click(object sender, EventArgs e)
