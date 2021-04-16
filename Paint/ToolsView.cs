@@ -24,6 +24,7 @@ namespace Paint
             AddTool(new BrushTool(), "Pensel", Properties.Resources.Tool);
             AddTool(new EraseTool(), "Viske", Properties.Resources.Tool);
             AddTool(new BucketTool(), "Spand", Properties.Resources.Tool);
+            AddTool(new TextTool(), "Tekst", Properties.Resources.Tool);
 
             AddOption(new SizeDialog(), "", Properties.Resources.Tool);
             AddOption(new ColorDialog(), "", Properties.Resources.Tool);

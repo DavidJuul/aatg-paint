@@ -52,6 +52,13 @@ namespace Paint
             View.this_Paint(this, null);
         }
 
+        public void DrawText(string text, Font font, Color color, Point point)
+        {
+            Brush brush = new SolidBrush(color);
+            _graphics.DrawString(text, font, brush, point.X, point.Y);
+            View.this_Paint(this, null);
+        }
+
         public void Clear()
         {
             _graphics.Clear(Color.White);
