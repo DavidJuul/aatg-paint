@@ -21,7 +21,7 @@ namespace Paint
         {
             View = new CanvasView(this);
 
-            Bitmap = new Bitmap(800, 600);
+            Bitmap = new Bitmap(1600, 800);
             CreateGraphics();
             _graphics.Clear(Color.White);
         }

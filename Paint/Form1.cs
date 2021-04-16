@@ -21,6 +21,9 @@ namespace Paint
         {
             InitializeComponent();
 
+            Size = new Size(816, 523);
+            MinimumSize = new Size(616, 423);
+
             // Create and add a new Canvas.
             _canvas = new Canvas();
             Controls.Add(_canvas.View);
