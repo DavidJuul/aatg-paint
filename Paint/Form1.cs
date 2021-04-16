@@ -13,7 +13,9 @@ namespace Paint
     public partial class Form1 : Form
     {
         private Canvas _canvas;
+        private Bitmap _previousBitmap;
         private Tool _tool;
+        private ToolsView _toolsView;
 
         public Form1()
         {
@@ -30,6 +32,8 @@ namespace Paint
             Controls.Add(_toolsView);
 
             AddMenu();
+
+            KeyDown += this_KeyDown;
         }
 
         private void AddMenu()
@@ -86,6 +90,16 @@ namespace Paint
             fileMenu.DropDownItems.Add(itemClose);
         }
 
+        public void this_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (ModifierKeys == Keys.Control && e.KeyCode == Keys.Z)
+            {
+                Bitmap currentBitmap = _canvas.Bitmap;
+                _canvas.Replace(_previousBitmap);
+                _previousBitmap = currentBitmap;
+            }
+        }
+
         public void Menu_New_click(object sender, EventArgs e)
         {
             _canvas.Clear();
@@ -116,6 +130,8 @@ namespace Paint
 
         public void CanvasView_MouseDown(object sender, MouseEventArgs e)
         {
+            _previousBitmap = _canvas.Bitmap.Clone() as Bitmap;
+
             _tool.OnMouseDown(sender, e);
         }
 
