@@ -36,8 +36,6 @@ namespace Paint
             Controls.Add(_toolsView);
 
             AddMenu();
-
-            KeyDown += this_KeyDown;
         }
 
         private void AddMenu()
@@ -58,7 +56,18 @@ namespace Paint
             fileMenu.Text = "Filer";
             AddFileMenuItems(fileMenu);
 
+            ToolStripMenuItem editMenu = new ToolStripMenuItem();
+            editMenu.Text = "Rediger";
+
+            ToolStripMenuItem itemUndo = new ToolStripMenuItem();
+            itemUndo.Text = "Fortryd";
+            itemUndo.ShortcutKeys = Keys.Control | Keys.Z;
+            itemUndo.Click += editMenu_Undo_click;
+
+            editMenu.DropDownItems.Add(itemUndo);
+
             mainMenu.Items.Add(fileMenu);
+            mainMenu.Items.Add(editMenu);
         }
 
         private void AddFileMenuItems(ToolStripMenuItem fileMenu)
@@ -94,14 +103,6 @@ namespace Paint
             fileMenu.DropDownItems.Add(itemClose);
         }
 
-        private void this_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (ModifierKeys == Keys.Control && e.KeyCode == Keys.Z)
-            {
-                _canvas.Undo();
-            }
-        }
-
         public void Menu_New_click(object sender, EventArgs e)
         {
             _canvas.Clear();
@@ -128,6 +129,11 @@ namespace Paint
         public void Menu_Close_click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        public void editMenu_Undo_click(object sender, EventArgs e)
+        {
+            _canvas.Undo();
         }
 
         public void CanvasView_MouseDown(object sender, MouseEventArgs e)
